@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POPWA - Pop the Fun. Taste the Flavour. | Roasted Makhana Snacks</title>
+    <meta name="description" content="POPWA - Guilt-free roasted makhana snacks in 4 delicious flavors. Healthy, crunchy, and affordable. Only ₹99 per pack!">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Flavor Colors */
+            --peri-peri: #FF4528;
+            --peri-peri-light: #FF6B4A;
+            --cream-onion: #4CAF50;
+            --cream-onion-light: #66BB6A;
+            --salt-pepper: #795548;
+            --salt-pepper-light: #8D6E63;
+            --plain: #FFD54F;
+            --plain-light: #FFE082;
+            
+            /* Base Colors */
+            --bg-cream: #FFF8F0;
+            --bg-light: #FFFBF5;
+            --text-dark: #2C1810;
+            --text-gray: #6B5B4F;
+            --white: #FFFFFF;
+            
+            /* Shadows */
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-strong: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+            75% { transform: translateY(-15px) rotate(3deg); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-scale {
+            animation: scaleIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        /* Decorative Background Elements */
+        .bg-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .makhana-float {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 213, 79, 0.3), rgba(255, 213, 79, 0.1));
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .makhana-1 { width: 80px; height: 80px; top: 10%; left: 5%; animation-delay: 0s; }
+        .makhana-2 { width: 60px; height: 60px; top: 60%; left: 10%; animation-delay: 1s; }
+        .makhana-3 { width: 100px; height: 100px; top: 30%; right: 8%; animation-delay: 2s; }
+        .makhana-4 { width: 70px; height: 70px; bottom: 20%; right: 15%; animation-delay: 1.5s; }
+        .makhana-5 { width: 90px; height: 90px; top: 70%; left: 80%; animation-delay: 0.5s; }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header/Nav */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-soft);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--peri-peri);
+            font-family: 'Fredoka', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--peri-peri);
+        }
+        
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFE0B2 100%);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 69, 40, 0.1), transparent);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 90px);
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            animation-delay: 0.2s;
+            text-shadow: 2px 4px 0px rgba(255, 69, 40, 0.2);
+        }
+        
+        .hero-highlight {
+            color: var(--peri-peri);
+            display: block;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-weight: 500;
+            animation-delay: 0.4s;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation-delay: 0.6s;
+        }
+        
+        .btn {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Fredoka', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--peri-peri), var(--peri-peri-light));
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 69, 40, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 69, 40, 0.5);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--peri-peri);
+            border: 3px solid var(--peri-peri);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--peri-peri);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 80px 20px;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            transition: height 0.3s;
+        }
+        
+        .product-card.peri::before { background: var(--peri-peri); }
+        .product-card.cream::before { background: var(--cream-onion); }
+        .product-card.salt::before { background: var(--salt-pepper); }
+        .product-card.plain::before { background: var(--plain); }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong);
+        }
+        
+        .product-card:hover::before {
+            height: 100%;
+            opacity: 0.05;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::after {
+            content: '🌾';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+        
+        .product-name {
+            font-size: 26px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .product-description {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+            min-height: 45px;
+        }
+        
+        .product-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--peri-peri);
+            margin-bottom: 20px;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .btn-add-cart {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+            color: white;
+        }
+        
+        .btn-add-cart.peri { background: linear-gradient(135deg, var(--peri-peri), var(--peri-peri-light)); }
+        .btn-add-cart.cream { background: linear-gradient(135deg, var(--cream-onion), var(--cream-onion-light)); }
+        .btn-add-cart.salt { background: linear-gradient(135deg, var(--salt-pepper), var(--salt-pepper-light)); }
+        .btn-add-cart.plain { background: linear-gradient(135deg, #F9A825, var(--plain)); }
+        
+        .btn-add-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Power Combo Section */
+        .power-combo {
+            background: linear-gradient(135deg, var(--peri-peri) 0%, var(--cream-onion) 50%, var(--salt-pepper) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .power-combo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .power-combo-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .combo-title {
+            font-size: clamp(40px, 6vw, 70px);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .combo-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .combo-price {
+            font-size: 80px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn-combo {
+            background: white;
+            color: var(--peri-peri);
+            padding: 20px 50px;
+            font-size: 22px;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-combo:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Why POPWA */
+        .why-popwa {
+            background: var(--bg-light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .feature-description {
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+        
+        /* Brand Story */
+        .brand-story {
+            background: white;
+            padding: 100px 20px;
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .story-text {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+        
+        .story-highlight {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--peri-peri);
+            font-family: 'Fredoka', sans-serif;
+            display: block;
+            margin-top: 20px;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            background: var(--bg-cream);
+            text-align: center;
+        }
+        
+        .hashtag {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--peri-peri);
+            margin-bottom: 40px;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .review-stars {
+            color: #FFB300;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .review-text {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .review-author {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--plain);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--plain);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 28px;
+        }
+        
+        .social-icons a {
+            color: white;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .newsletter {
+            margin-top: 20px;
+        }
+        
+        .newsletter-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .newsletter-input input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .newsletter-input button {
+            padding: 12px 30px;
+            background: var(--peri-peri);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-input button:hover {
+            background: var(--peri-peri-light);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .tagline {
+            margin-top: 10px;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--plain);
+        }
+        
+        /* Sticky Mobile Bar */
+        .sticky-mobile-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .sticky-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--peri-peri);
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .sticky-btn {
+            flex: 1;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--peri-peri), var(--peri-peri-light));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a:not(.cart-icon) {
+                display: none;
+            }
+            
+            .hero {
+                min-height: 70vh;
+                padding: 40px 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            section {
+                padding: 60px 20px;
+            }
+            
+            .sticky-mobile-bar {
+                display: flex;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        /* Payment Icons */
+        .payment-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-icon {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decoration -->
+    <div class="bg-decoration">
+        <div class="makhana-float makhana-1"></div>
+        <div class="makhana-float makhana-2"></div>
+        <div class="makhana-float makhana-3"></div>
+        <div class="makhana-float makhana-4"></div>
+        <div class="makhana-float makhana-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">POPWA</div>
+            <div class="nav-links">
+                <a href="#products">Shop</a>
+                <a href="#why">Why POPWA</a>
+                <a href="#story">Our Story</a>
+                <span class="cart-icon">🛒</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="animate-fade-up">
+                <span class="hero-highlight">POP THE FUN.</span>
+                TASTE THE FLAVOUR.
+            </h1>
+            <p class="hero-subtitle animate-fade-up">Guilt-Free Roasted Makhana Snack.</p>
+            <div class="cta-buttons animate-fade-up">
+                <a href="#products" class="btn btn-primary">🛒 Shop Now</a>
+                <a href="#combo" class="btn btn-secondary">🎁 View Combo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Explore Our Flavours</h2>
+            <p class="section-subtitle">Four bold flavours. One perfect crunch.</p>
+            
+            <div class="products-grid">
+                <!-- Peri Peri -->
+                <div class="product-card peri animate-scale" style="animation-delay: 0.1s;">
+                    <div class="product-image">🌶️</div>
+                    <h3 class="product-name">Peri Peri</h3>
+                    <p class="product-description">Spicy & Tangy Kick</p>
+                    <div class="product-price">₹99</div>
+                    <button class="btn-add-cart peri">Add to Cart</button>
+                </div>
+                
+                <!-- Cream & Onion -->
+                <div class="product-card cream animate-scale" style="animation-delay: 0.2s;">
+                    <div class="product-image">🧅</div>
+                    <h3 class="product-name">Cream & Onion</h3>
+                    <p class="product-description">Smooth, Savory & Addictive</p>
+                    <div class="product-price">₹99</div>
+                    <button class="btn-add-cart cream">Add to Cart</button>
+                </div>
+                
+                <!-- Salt & Pepper -->
+                <div class="product-card salt animate-scale" style="animation-delay: 0.3s;">
+                    <div class="product-image">🧂</div>
+                    <h3 class="product-name">Salt & Pepper</h3>
+                    <p class="product-description">Classic & Bold Crunch</p>
+                    <div class="product-price">₹99</div>
+                    <button class="btn-add-cart salt">Add to Cart</button>
+                </div>
+                
+                <!-- Plain -->
+                <div class="product-card plain animate-scale" style="animation-delay: 0.4s;">
+                    <div class="product-image">🌾</div>
+                    <h3 class="product-name">Plain</h3>
+                    <p class="product-description">Simply Wholesome Goodness</p>
+                    <div class="product-price">₹99</div>
+                    <button class="btn-add-cart plain">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Power Combo Section -->
+    <section id="combo" class="power-combo">
+        <div class="power-combo-content">
+            <h2 class="combo-title">THE POWER COMBO</h2>
+            <p class="combo-subtitle">Get all 4 flavours and save more!</p>
+            <div class="combo-price">₹399</div>
+            <button class="btn-combo">🛒 Grab the Combo</button>
+        </div>
+    </section>
+
+    <!-- Why POPWA -->
+    <section id="why" class="why-popwa">
+        <div class="container">
+            <h2 class="section-title">Why POPWA?</h2>
+            <p class="section-subtitle">Snacking done right.</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🌱</span>
+                    <h3 class="feature-title">Roasted, Not Fried</h3>
+                    <p class="feature-description">Light & crunchy, never oily</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-icon">💪</span>
+                    <h3 class="feature-title">Plant Protein</h3>
+                    <p class="feature-description">Good source of natural protein</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-icon">🛡️</span>
+                    <h3 class="feature-title">No Preservatives</h3>
+                    <p class="feature-description">Pure & natural ingredients</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-icon">🌾</span>
+                    <h3 class="feature-title">Gluten-Free</h3>
+                    <p class="feature-description">Safe for everyone</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-icon">🇮🇳</span>
+                    <h3 class="feature-title">Made in India</h3>
+                    <p class="feature-description">Proudly Indian, globally loved</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section id="story" class="brand-story">
+        <div class="story-content">
+            <h2 class="section-title">From Popcorn to Power Snack</h2>
+            <p class="story-text">
+                POPWA was created for snack lovers who want crunch without compromise. 
+                We took the humble makhana and transformed it into something extraordinary — 
+                fun like popcorn, healthy like nature intended, and affordable for everyone.
+                <span class="story-highlight">
+                    Because you deserve snacks that care.
+                </span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="hashtag">#PopSeSehat</div>
+            <h2 class="section-title">What Our Poppers Say</h2>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Finally a snack I can enjoy guilt-free! The Peri Peri is addictive!"</p>
+                    <p class="review-author">— Priya M.</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Perfect for my office breaks. Light, crunchy, and so flavorful!"</p>
+                    <p class="review-author">— Rahul K.</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"My kids love it! Healthy snacking made fun. The combo pack is worth it!"</p>
+                    <p class="review-author">— Sneha R.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>POPWA</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-top: 15px;">
+                    Guilt-free roasted makhana snacks for the modern snacker.
+                </p>
+                <div class="social-icons" style="margin-top: 20px;">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#products">Shop Now</a></li>
+                    <li><a href="#combo">Power Combo</a></li>
+                    <li><a href="#why">Why POPWA</a></li>
+                    <li><a href="#story">Our Story</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Stay Crunchy</h3>
+                <div class="newsletter">
+                    <p style="color: rgba(255, 255, 255, 0.8);">Get updates on new flavors & offers!</p>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Your email">
+                        <button>Join</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-icons">
+            <span class="payment-icon">💳 Cards</span>
+            <span class="payment-icon">📱 UPI</span>
+            <span class="payment-icon">💵 COD</span>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 POPWA. All rights reserved.</p>
+            <p class="tagline">Stay Crunchy. Stay Healthy.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky Mobile Bar -->
+    <div class="sticky-mobile-bar">
+        <div class="sticky-price">₹399</div>
+        <button class="sticky-btn">Buy Combo Now</button>
+    </div>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-up, .animate-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to Cart functionality (basic)
+        document.querySelectorAll('.btn-add-cart, .btn-combo, .sticky-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('🎉 Added to cart! (Connect to your e-commerce backend)');
+            });
+        });
+    </script>
+</body>
+</html>
